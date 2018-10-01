@@ -1,0 +1,7 @@
+FROM norionomura/jazzy:0.9.3_swift-4.1
+WORKDIR /app
+COPY Package.swift /app/
+COPY Sources /app/Sources
+RUN swift build
+
+CMD [ "/bin/bash", "-c", "sourcekitten doc --spm-module Dummy" ]
