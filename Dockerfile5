@@ -1,0 +1,21 @@
+FROM norionomura/swift:50
+
+RUN apt-get update && apt-get install -y \
+    libsqlite3-dev ruby-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN git clone --branch 0.22.0 https://github.com/jpsim/SourceKitten.git && \
+    cd SourceKitten && \
+    swift build --configuration release --static-swift-stdlib && \
+    mv `swift build --configuration release --static-swift-stdlib --show-bin-path`/sourcekitten /usr/bin && \
+    cd .. && \
+    rm -rf SourceKitten && \
+    gem install bundler && \
+    gem install jazzy
+
+WORKDIR /app
+COPY Package.swift /app/
+COPY Sources /app/Sources
+RUN swift build
+
+CMD [ "/bin/bash", "-c", "sourcekitten doc --spm-module Dummy" ]
