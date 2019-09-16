@@ -1,6 +1,7 @@
 .PHONY: mac linux
 
 mac:
+	swift build
 	sourcekitten doc --spm-module Dummy
 
 linux5:

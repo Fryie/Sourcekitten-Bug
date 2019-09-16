@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
     libsqlite3-dev ruby-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN git clone --branch 0.22.0 https://github.com/jpsim/SourceKitten.git && \
+RUN git clone --branch 0.25.0 https://github.com/jpsim/SourceKitten.git && \
     cd SourceKitten && \
     swift build --configuration release --static-swift-stdlib && \
     mv `swift build --configuration release --static-swift-stdlib --show-bin-path`/sourcekitten /usr/bin && \

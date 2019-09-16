@@ -1,4 +1,4 @@
-FROM norionomura/jazzy:0.9.3_swift-4.2
+FROM norionomura/jazzy:0.11.0_swift-4.2.0
 WORKDIR /app
 COPY Package.swift /app/
 COPY Sources /app/Sources
